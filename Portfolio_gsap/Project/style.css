@@ -1,0 +1,1057 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+}
+
+:root {
+  /* الخلفيات - Abyss & Surface */
+  --bg-primary: #050505;       /* أسود عميق جداً للخلفية الأساسية */
+  --bg-secondary: #0f0f0f;     /* رمادي داكن جداً للكروت والعناصر المنفصلة */
+  
+  /* ألوان الهوية - Cyber & Neon */
+  --accent-primary: #00f2ff;   /* أزرق سيبراني (للإضاءة والروابط) */
+  --accent-secondary: #7000ff; /* بنفسجي نيون (للتدرجات والروح العصرية) */
+  
+  /* النصوص - Contrast */
+  --text-main: #ffffff;        /* أبيض ناصع للعناوين */
+  --text-dim: #888888;         /* رمادي خافت للنصوص الثانوية */
+  
+  /* تأثيرات الزجاج والإضاءة (مثالية لـ GSAP) */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glow-color: rgba(0, 242, 255, 0.5);
+  
+  /* التدرج اللوني الأساسي للموقع */
+  --main-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* loading page */
+
+.loading_page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.loader_container {
+  display: flex; 
+  width: 100%;
+  height: 100%;
+  align-items: center; 
+  justify-content: center; 
+  position: relative;
+  z-index: 999;
+}
+
+.loader_side {
+  height: 100%;
+  flex: 1; 
+}
+
+.left_side {
+  position: relative;
+  background-color: var(--text-dim);
+}
+
+.right_side {
+  position: relative;
+  background-color: #cbcbcb;
+}
+
+.svg_wrapper {
+  position: absolute; 
+  z-index: 10;
+  pointer-events: none;
+}
+
+.svg_wrapper svg {
+  max-width: 90vw;
+  height: auto;
+  display: block;
+}
+
+/* header hero */
+
+
+header .hero {
+  width: 100vw;
+  height: 100svh;
+  background-image: url(../images/BOODII.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+/* nav url logo */
+
+header .hero nav {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+/* logo */
+
+header .hero nav .logo h1 {
+  color: var(--text-main);
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+/* url */
+
+header .hero nav .url ul {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+header .hero nav .url ul li {
+  color: var(--text-main);
+  font-size: large;
+  font-weight: 500;
+  display: inline-block; 
+  position: relative;    
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+header .hero nav .url ul li a {
+  display: block;
+}
+
+/* url hover */
+
+header .hero nav .url ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0; 
+  width: 100%;
+  height: 2px;
+  background: var(--accent-primary); 
+  
+
+  transform: scaleX(0);  
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+header .hero nav .url ul li:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* hero contant */
+
+header .hero .hero_contant {
+  width: 100vw;
+  height: 90svh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/* title */
+header .hero .hero_contant .title h1 {
+  color: var(--text-main);
+  font-weight: bolder;
+  font-size: clamp(2rem, 5vw + 1rem, 4rem);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+header .hero .hero_contant .title h1 span {
+  color: var(--text-dim);
+}
+
+/* text */
+
+header .hero .hero_contant .title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+  top: 9%;
+}
+
+header .hero .hero_contant .title p {
+  color: var(--text-main);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    text-align: center;
+    width: 50%;
+    font-weight: 300;
+}
+
+/* btns */
+
+header .hero .hero_contant .btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+header .hero .hero_contant .btns p {
+  background-color: var(--accent-secondary);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 72px;
+  overflow: hidden;
+}
+
+/* btn p hover */
+header .hero .hero_contant .btns p:hover {
+  background-color: #45197d;
+}
+/*  */
+header .hero .hero_contant .btns p a {
+  color: var(--text-main); 
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 25px 32px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* icones */
+
+header .hero .hero_contant .icones1 {
+  overflow: visible;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-size: 100px;
+  background-position: center;
+}
+
+header .hero .hero_contant .icones {
+  width: 56px;
+  min-width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex: 0 0 auto;
+  background-size: 100px;
+  background-position: center;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform, opacity;
+
+  z-index: 10;
+  position: relative;
+}
+
+header .hero .hero_contant .icones img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+header .hero .hero_contant .icones.is-dragging {
+  cursor: grabbing;
+}
+
+/* cricle_1 */
+
+
+header .hero .hero_contant .cricle_1 {
+  position: absolute;
+  top: 15%; 
+  left: 5%;  
+  overflow: visible;
+}
+
+header .hero .hero_contant .cricle_1 #svgCircle_1Left {
+  opacity: 0;
+}
+
+
+/* main */
+
+main{
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* scrollHerozental sobre me*/
+
+main .scrollHerozental {
+  width: 100vw;
+  height: 100svh;
+  background-color: #45197d;
+  overflow-x: hidden;
+  display: flex;
+
+}
+
+/* section1 */
+
+main .scrollHerozental .section1 {
+  min-width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  background-color: var(--bg-secondary);
+  position: relative;
+}
+
+
+main .scrollHerozental .section1 section {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .scrollHerozental .section1 section h2 {
+  color: var(--text-main);
+  font-size: clamp(45px, 15vw, 184px);
+  font-weight: 900;
+  text-align: center;
+}
+
+/* section2 */
+
+main .scrollHerozental .section2 {
+  min-width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  background-color: var(--bg-secondary);
+}
+
+main .scrollHerozental .section2 .contant_sec2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+
+  overflow-y: hidden;
+}
+
+main .scrollHerozental .section2 .contant_sec2 h3 {
+  color: var(--text-main);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2vw + 0.8rem, 1.75rem);
+}
+
+main .scrollHerozental .section2 .contant_sec2 p {
+  color: var(--text-main);
+  font-weight: 400;
+  text-align: center;
+  width: 40%;
+  font-size: clamp(1rem, 0.5vw + 08rem, 1.125rem);
+  padding: 15px;
+}
+
+/* icones_section2 */
+
+main .scrollHerozental .section2 .icones_section2 {
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  top: -40%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+/* icones_sec2 */
+main .scrollHerozental .section2 .icones1_sec2,
+main .scrollHerozental .section2 .icones2_sec2,
+main .scrollHerozental .section2 .icones3_sec2 {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+main .scrollHerozental .section2 .icones1_sec2 p,
+main .scrollHerozental .section2 .icones2_sec2 p,
+main .scrollHerozental .section2 .icones3_sec2 p {
+  color: var(--text-main);
+  font-size: 15px;
+  font-weight: 300;
+}
+
+main .scrollHerozental .section2 .icones1_sec2 .icones_sec2_img,
+main .scrollHerozental .section2 .icones2_sec2 .icones_sec2_img,
+main .scrollHerozental .section2 .icones3_sec2 .icones_sec2_img {
+  width: 100px;
+  height: 55px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 36px;
+}
+
+main .scrollHerozental .section2 .icones1_sec2 .icones_sec2_img {
+  background-image: url(../icones/shield-checkered.svg);
+}
+
+main .scrollHerozental .section2 .icones2_sec2 .icones_sec2_img {
+  background-image: url(../icones/lightning.svg);
+}
+
+main .scrollHerozental .section2 .icones3_sec2 .icones_sec2_img {
+  background-image: url(../icones/users.svg);
+}
+
+/* imgEffect */
+main .imgEffect {
+  width: 100%;
+  height: 50vh;   
+  overflow: hidden;  
+  position: relative;
+}
+
+main .imgEffect img {
+  width: 100%;
+  height: 150%;    
+  object-fit: cover;
+  position: absolute;
+  top: -25%;        
+}
+
+/* section skills */
+
+main #skills {
+  background-color: var(--bg-primary);
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow: hidden;
+}
+
+main #skills .skill-header {
+  width: min(100%, 780px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+main #skills .skill-header h2 {
+  color: var(--text-main);
+  font-size: clamp(1.5rem, 3vw + 1rem, 2.5rem);
+  font-weight: bold;
+}
+
+main #skills .skill-header p {
+  margin-top: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+main #skills .skills-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+main #skills .skill-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--accent-primary);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+main #skills .col-title {
+  color: var(--text-main);
+  font-size: clamp(1.5rem, 2vw + 0.8rem, 1.75rem);
+  font-weight: 700;
+}
+
+main #skills .card,
+main #skills .left {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  background-color: var(--bg-primary);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+main #skills .card:hover,
+main #skills .left:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+main #skills .card-icon {
+  width: 52px;
+  min-width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  background: var(--main-gradient);
+}
+main #skills .card .card-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+main #skills .card .card-body .card-title,
+main #skills .left .card-body .card-title{
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+main #skills .card .card-body .card-desc,
+main #skills .left .card-body .card-desc {
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+main #skills .card .bar-wrap,
+main #skills .left .bar-wrap {
+  margin-top: 2px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+main #skills .card .bar-wrap .bar-track,
+main #skills .left .bar-wrap .bar-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: #1d2631;
+}
+
+main #skills .card .bar-wrap .bar-fill,
+main #skills .left .bar-wrap .bar-fill {
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--text-dim);
+  transition: width 1.2s ease;
+}
+
+main #skills .card .bar-wrap .bar-pct,
+main #skills .left .bar-wrap .bar-pct {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+main #skills .card.featured,
+main #skills .left.featured {
+  border-color: rgba(56, 189, 248, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.13) 0%,
+    rgba(11, 14, 20, 0.82) 100%
+  );
+}
+
+main #skills .divider {
+  border: 0;
+  border-top: 1px solid var(--accent-secondary);
+  opacity: 0.8;
+}
+
+
+.bar-fill {
+  width: 0;
+  height: 100%;
+  background-color: var(--accent-secondary); 
+
+}
+
+.bar-track {
+  width: 100%;
+  background-color: #e0e0e0;
+  overflow: hidden;
+}
+
+
+/* projectHerozinta */
+
+main .projectHerozintal {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+main .projectHerozintal .project {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+
+}
+
+main .projectHerozintal .project_h2 {
+  background-color: var(--bg-primary);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .projectHerozintal .project_h2 h2 {
+  color: var(--text-main);
+  font-size: clamp(45px, 15vw, 184px);
+  font-weight: 900;
+  text-align: center;
+}
+
+main .projectHerozintal .project1 {
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .projectHerozintal .project2 {
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .projectHerozintal .project3 {
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* article */
+
+main .projectHerozintal .project .projectArticle {
+  width: 50%;
+  height: auto;
+  padding: 25px 0 ;
+  background-color: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+  border-radius: 35px;
+}
+
+main .projectHerozintal .project .projectArticle .title {
+  display: flex;
+  flex-direction: row;
+
+}
+
+main .projectHerozintal .project .projectArticle .title h3 {
+  color: var(--text-main);
+  font-size: clamp(1.5rem, 2vw + 0.8rem, 1.75rem);
+  
+  font-weight: 700;
+}
+
+main .projectHerozintal .project .projectArticle .title span{
+  font-size: large;
+  font-weight: 500;
+  opacity: 0.7;
+  color: var(--text-dim);
+  position: relative;
+  right: 20%;
+  
+}
+
+main .projectHerozintal .project .textArticle p{
+  color: var(--text-main);
+  text-align: center;
+  font-size: clamp(1rem, 0.5vw + 08rem, 1.125rem);
+  font-weight: 500;
+  padding: 15px;
+}
+
+main .projectHerozintal .project .textArticle p span {
+  color: var(--text-dim);
+  font-size: large;
+  font-weight: 500;
+  opacity: 0.7;
+  position: relative;
+}
+
+main .projectHerozintal .project .btnArticle p {
+  padding: 15px;
+  background-color: var(--accent-secondary);
+  border-radius: 35px;
+}
+
+main .projectHerozintal .project .btnArticle p:hover {
+  background-color: #45197d;
+}
+
+main .projectHerozintal .project .btnArticle p a {
+  color: var(--text-main);
+  font-size: large;
+  font-weight: 400;
+}
+
+/* contacto_section */
+/* info_card */
+
+main .contacto_section {
+  background-color: var(--bg-primary);
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+main .contacto_section .info_card {
+  background-color: var(--bg-secondary);
+  width: 40%;
+  height: 50%;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .contacto_section .info_card strong {
+  color: var(--text-dim);
+  font-weight: 800;
+  opacity: 0.6;
+}
+
+main .contacto_section .info_card p {
+  color: var(--text-main);
+  font-size: clamp(1rem, 0.5vw + 08rem, 1.125rem);
+  font-weight: 400;
+}
+
+/* contacto */
+
+main .contacto_section .contact {
+  background-color: var(--bg-secondary);
+  width: 40%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+main .contacto_section .contact form {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+main .contacto_section .contact form input,
+main .contacto_section .contact form textarea {
+  color: var(--text-main);
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+
+main .contacto_section .contact form input {
+  width: 100%;
+  height: 10px; 
+  padding: 20px;
+}
+
+/* hover */
+
+main .contacto_section .contact form input:hover,
+main .contacto_section .contact form textarea:hover {
+  background-color: #00000042;
+  border-radius: 20px;
+  
+}
+
+main .contacto_section .contact form .submit {
+  background-color: var(--accent-secondary);
+  height: auto;
+  border-radius: 20px;
+  font-size: larger;
+  font-weight: 500;
+}
+
+main .contacto_section .contact form .submit:hover {
+  background-color: #45197d;
+}
+
+/* footer */
+
+footer{
+  width: 100vw;
+  height: 70px;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+footer small {
+  color: var(--text-main);
+  font-weight: 400;
+  font-size: larger;
+  text-align: center;
+}
+/* midea */
+
+@media screen and (max-width:770px){
+  
+  /* header */
+
+  header .hero .hero_contant .title {
+    position: unset;
+  }
+
+  header .hero .hero_contant .title h1 {
+    display: block;
+  }
+ 
+  header .hero .hero_contant .btns {
+    gap: 15px;
+  }
+
+  .hero_contant .btns p a {
+    font-size: unset;
+}
+
+/* nav url */
+
+header .hero nav {
+  padding: 10px 20px;
+  position: relative;
+
+}
+
+header .hero nav .url ul {
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  width: 100%;
+  height: auto;
+  position: absolute;
+  right: -100%;
+  z-index: 999;
+
+  top: 90%;
+  padding: 20px;
+  transition: all 0.5s ease-in;
+}
+
+.hambergerurl {
+  width: 36px; 
+  gap: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+
+  position: relative;
+  right: -25%;
+
+}
+
+.hambergerurl span {
+  width: 60px;
+  height: 3px;
+  display: block;
+  background-color: var(--accent-secondary);
+  position: static; 
+
+  transition: all 0.5s ease-in;
+}
+
+header .hero .hero_contant .icones1 {
+  gap: 10px;
+}
+
+
+/* to active */
+.hambergerurl.active span:nth-child(1) {
+  transform: translateY(20px) rotate(45deg);
+  background-color: #45197d;
+}
+
+.hambergerurl.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hambergerurl.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: #45197d;
+}
+
+header .hero nav .url ul.active {
+  right: 0%;
+}
+
+/* main sobre me */
+
+main .scrollHerozental .section2 .contant_sec2 p {
+  width: 8%;
+}
+
+main .scrollHerozental .section2 .icones_section2 {
+  top: -28%;
+}
+
+/* skill */
+
+main #skills .skills-layout{ 
+    grid-template-columns: none;
+}
+
+/* project */
+
+main .projectHerozintal .project .projectArticle {
+  width: 100%;
+}
+
+/* contacto */
+
+main .contacto_section {
+  padding: 0;
+  flex-wrap: nowrap;
+  height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+main .contacto_section .info_card {
+  width: 100%;
+  height: 50%;
+}
+
+main .contacto_section .contact {
+  width: 100%;
+  height: 50%;
+}
+
+ 
+
+}
